@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}Courier Status Analysis{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- عنوان الصفحة -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 fw-bold">Courier Status Analysis</h1>
+            <p class="lead">Analyze the impact of courier statuses on revenue and customer satisfaction.</p>
+        </div>
+    </div>
+
+    <!-- نموذج اختيار الملف -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <form action="/courier-analysis" method="POST" class="p-4 shadow rounded bg-light">
+                <div class="mb-3">
+                    <label for="datafile" class="form-label fw-bold">Select a Dataset:</label>
+                    <select name="datafile" id="datafile" class="form-select" required>
+                        {% for file in valid_files %}
+                            <option value="{{ file }}">{{ file }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Analyze</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- عرض النتائج -->
+    {% if courier_results %}
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Analysis Results for {{ selected_file }}</h2>
+                <div class="table-responsive">
+                    {{ courier_results|safe }}
+                </div>
+            </div>
+        </div>
+
+        <!-- التوصيات -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <h3 class="text-center">Recommendations</h3>
+                <div class="bg-light p-3 shadow rounded">
+                    <p class="mb-1"><strong>Revenue from successful deliveries:</strong> {{ recommendations.delivered_revenue }}</p>
+                    <p class="mb-1"><strong>Revenue from delayed deliveries:</strong> {{ recommendations.delayed_revenue }}</p>
+                    <p class="mb-1"><strong>Delayed delivery impact:</strong> {{ recommendations.delay_percentage }}% of total revenue.</p>
+                    <p class="mb-0"><strong>Suggestion:</strong> Focus on reducing delays to improve revenue and customer satisfaction.</p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

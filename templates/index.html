@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}Home - Flask Website{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section text-white text-center d-flex align-items-center justify-content-center" style="background-image: url('/static/images/hero.jpg'); border-radius: 20px; background-size: cover; background-position: center; height: 80vh;">
+    <div class="hero-content p-4">
+        <h1 class="display-4 fw-bold" style="text-shadow: 1px 1px 5px #000;">Welcome to Our Big Data Analysis</h1>
+        <p class="lead" style="text-shadow: 1px 1px 5px #000;">Explore the amazing features and insights we offer to help your business thrive.</p>
+        <a href="/clean-data" class="btn btn-primary btn-lg">Get Started</a>
+    </div>
+</div>
+{% endblock %}

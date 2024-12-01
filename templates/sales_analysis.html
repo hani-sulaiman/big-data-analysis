@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}Sales Analysis{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- عنوان الصفحة -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 fw-bold">Sales Analysis Over Time</h1>
+            <p class="lead">Select a dataset to analyze sales trends and generate insightful charts.</p>
+        </div>
+    </div>
+
+    <!-- نموذج اختيار الملف -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <form action="/sales-analysis" method="POST" class="p-4 shadow rounded bg-light">
+                <div class="mb-3">
+                    <label for="datafile" class="form-label fw-bold">Select a Dataset:</label>
+                    <select name="datafile" id="datafile" class="form-select" required>
+                        {% for file in valid_files %}
+                            <option value="{{ file }}">{{ file }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Analyze</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- عرض الرسم البياني -->
+    {% if plot_url %}
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <h2>Analysis Results for {{ selected_file }}</h2>
+                <div class="mt-4">
+                    <img src="{{ plot_url }}" alt="Sales Analysis Chart" class="img-fluid shadow rounded">
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

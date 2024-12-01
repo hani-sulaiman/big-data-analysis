@@ -1,0 +1,16 @@
+index,Shiprocket,Unnamed: 1,INCREFF
+0,Heads,Price (Per Unit),Price (Per Unit)
+1,Inbound (Fresh Stock and RTO),₹4.00,4
+2,Outbound,₹7.00,11
+3,Storage Fee/Cft,₹25.00,Rs 0.15/- Per Day
+4,Customer Return with Detailed QC,₹6.00,15.5
+6,Inward,Unloading,• Boxes counted and weighed. Data captured in the Maven.
+12,Outward,Order receipt,•  Orders will be received through integration directly into Maven or directly to Maven by the client
+19,Returns,Inward,•  RTO and Customer Returns are received and Inwarded in the warehouse Outer package visible inspection is done before inwarding 
+21,Inventory management,Cycle count,•  Daily cycle count to maintain accuracy and deliver SLAs without disrupting regular operations. Complete Inventory to be covered in 3 months.
+37,Performance Measure,Measurement,Target
+38,Monthly Fill Rate,•  Measurement is monthly,>99.8%
+43,Customer Complaints,•  Measurement is monthly,<0.2%
+45,Allowed Shrinkage,•  Measured at the time of full audit carried out against Maven inventory by Client or any third party appointed by the Client,<0.2%
+47,Penalty,•  Penalty for fillrate,2x of the service fee per affected qty
+49,Others,•  Days of Operations,7 days per week

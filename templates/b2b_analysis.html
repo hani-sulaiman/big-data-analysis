@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}B2B Analysis{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- عنوان الصفحة -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 fw-bold">B2B vs Non-B2B Sales Analysis</h1>
+            <p class="lead">Compare the performance of B2B and Non-B2B sales to refine your strategies.</p>
+        </div>
+    </div>
+
+    <!-- نموذج اختيار الملف -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <form action="/b2b-analysis" method="POST" class="p-4 shadow rounded bg-light">
+                <div class="mb-3">
+                    <label for="datafile" class="form-label fw-bold">Select a Dataset:</label>
+                    <select name="datafile" id="datafile" class="form-select" required>
+                        {% for file in valid_files %}
+                            <option value="{{ file }}">{{ file }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Analyze</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- عرض النتائج -->
+    {% if analysis_results %}
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Analysis Results for {{ selected_file }}</h2>
+                <div class="table-responsive">
+                    {{ analysis_results|safe }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Insights and Recommendations -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <h3 class="text-center">Insights and Recommendations</h3>
+                <p class="text-center">
+                    - Focus on enhancing B2B sales if they contribute significantly to overall revenue.<br>
+                    - If Non-B2B has higher average sale value, consider strategies to attract individual customers.<br>
+                    - Tailor marketing and inventory strategies to the strengths of each segment.
+                </p>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}Fulfilment Analysis{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- عنوان الصفحة -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 fw-bold">Fulfilment Method Analysis</h1>
+            <p class="lead">Analyze how different fulfilment methods impact sales performance.</p>
+        </div>
+    </div>
+
+    <!-- نموذج اختيار الملف -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <form action="/fulfilment-analysis" method="POST" class="p-4 shadow rounded bg-light">
+                <div class="mb-3">
+                    <label for="datafile" class="form-label fw-bold">Select a Dataset:</label>
+                    <select name="datafile" id="datafile" class="form-select" required>
+                        {% for file in valid_files %}
+                            <option value="{{ file }}">{{ file }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Analyze</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- عرض النتائج -->
+    {% if analysis_results %}
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Analysis Results for {{ selected_file }}</h2>
+                <div class="table-responsive">
+                    {{ analysis_results|safe }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories Analysis</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/categories-analysis">Categories Analysis</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Analyze Product Categories</h1>
+        <form action="/categories-analysis" method="POST">
+            <label for="datafile">Select a dataset:</label>
+            <select name="datafile" id="datafile" required>
+                {% for file in valid_files %}
+                    <option value="{{ file }}">{{ file }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Analyze</button>
+        </form>
+        
+        {% if analysis_results %}
+            <h2>Analysis Results for {{ selected_file }}</h2>
+            <div>
+                {{ analysis_results|safe }}
+            </div>
+        {% endif %}
+    </main>
+    <footer>
+        <p>© 2024 Your Company Name. All rights reserved.</p>
+    </footer>
+</body>
+</html>
