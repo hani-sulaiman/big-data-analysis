@@ -1,41 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories Analysis</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/categories-analysis">Categories Analysis</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h1>Analyze Product Categories</h1>
-        <form action="/categories-analysis" method="POST">
-            <label for="datafile">Select a dataset:</label>
-            <select name="datafile" id="datafile" required>
-                {% for file in valid_files %}
-                    <option value="{{ file }}">{{ file }}</option>
-                {% endfor %}
-            </select>
-            <button type="submit">Analyze</button>
-        </form>
-        
-        {% if analysis_results %}
-            <h2>Analysis Results for {{ selected_file }}</h2>
-            <div>
-                {{ analysis_results|safe }}
+{% extends "layout.html" %}
+
+{% block title %}Categories Analysis{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- عنوان الصفحة -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 fw-bold">
+                <i class="bi bi-bar-chart-line"></i> Analyze Product Categories
+            </h1>
+            <p class="lead">Discover insights on product categories to optimize your business strategy.</p>
+        </div>
+    </div>
+
+    <!-- نموذج اختيار الملف -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <form action="/categories-analysis" method="POST" class="p-4 shadow rounded bg-light">
+                <div class="mb-3">
+                    <label for="datafile" class="form-label fw-bold">Select a Dataset:</label>
+                    <select name="datafile" id="datafile" class="form-select" required>
+                        {% for file in valid_files %}
+                            <option value="{{ file }}">{{ file }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Analyze</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- عرض النتائج -->
+    {% if analysis_results %}
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Analysis Results for {{ selected_file }}</h2>
+                <div class="table-responsive">
+                    {{ analysis_results|safe }}
+                </div>
             </div>
-        {% endif %}
-    </main>
-    <footer>
-        <p>© 2024 Your Company Name. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
